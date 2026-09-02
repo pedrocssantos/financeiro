@@ -1,19 +1,21 @@
-/* CSS Base e Sistema de Design do Grupo 440 */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+/* CSS Base e Sistema de Design do Grupo 440 - Fintech SaaS Aesthetic */
 :root {
-  /* Tema Escuro Oficial Grupo 440 */
-  --bg-base: #001319;
-  --bg-card: #041b23;
-  --bg-card-hover: #072530;
-  --bg-surface: #0a2f3d;
-  --primary: #F0F1F1;
-  --primary-dark: #001319;
-  --primary-soft: rgba(240, 241, 241, 0.08);
-  --border: rgba(240, 241, 241, 0.14);
-  --border-subtle: rgba(240, 241, 241, 0.07);
-  --border-hover: rgba(240, 241, 241, 0.35);
-  --text: #F0F1F1;
-  --text-muted: #9BB0B8;
-  --text-subtle: #627780;
+  /* Tema Escuro Oficial Grupo 440 (Ultra Premium Dark Fintech) */
+  --bg-base: #070E17;
+  --bg-card: #0F172A;
+  --bg-card-hover: #1E293B;
+  --bg-surface: #132238;
+  --primary: #66C1BF;
+  --primary-dark: #070E17;
+  --primary-soft: rgba(102, 193, 191, 0.12);
+  --border: rgba(255, 255, 255, 0.1);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-hover: rgba(102, 193, 191, 0.4);
+  --text: #F8FAFC;
+  --text-muted: #94A3B8;
+  --text-subtle: #64748B;
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 20px;
@@ -21,46 +23,46 @@
   --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --container: 1280px;
 
-  /* Cores Financeiras com Brilho Neo-Teal */
-  --success: #22c55e;
-  --success-bg: rgba(34, 197, 94, 0.12);
-  --danger: #f43f5e;
-  --danger-bg: rgba(244, 63, 94, 0.12);
-  --warning: #f59e0b;
-  --warning-bg: rgba(245, 158, 11, 0.12);
-  --info: #06b6d4;
-  --info-bg: rgba(6, 182, 212, 0.12);
-  --purple: #a855f7;
-  --purple-bg: rgba(168, 85, 247, 0.12);
-  --pink: #ec4899;
-  --pink-bg: rgba(236, 72, 153, 0.12);
+  /* Cores Financeiras Neon SaaS */
+  --success: #10B981;
+  --success-bg: rgba(16, 185, 129, 0.14);
+  --danger: #F43F5E;
+  --danger-bg: rgba(244, 63, 94, 0.14);
+  --warning: #F59E0B;
+  --warning-bg: rgba(245, 158, 11, 0.14);
+  --info: #06B6D4;
+  --info-bg: rgba(6, 182, 212, 0.14);
+  --purple: #8B5CF6;
+  --purple-bg: rgba(139, 92, 246, 0.14);
+  --pink: #EC4899;
+  --pink-bg: rgba(236, 72, 153, 0.14);
 
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.45);
-  --shadow-glow: 0 0 25px rgba(6, 182, 212, 0.15);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 30px rgba(102, 193, 191, 0.2);
 }
 
 /* Tema Claro Grupo 440 */
 body.light-theme {
-  --bg-base: #F5F7F8;
+  --bg-base: #F1F5F9;
   --bg-card: #FFFFFF;
-  --bg-card-hover: #F8FAFB;
-  --bg-surface: #E5EAEF;
-  --primary: #001319;
-  --primary-dark: #F0F1F1;
-  --primary-soft: rgba(0, 19, 25, 0.06);
-  --border: rgba(0, 19, 25, 0.15);
-  --border-subtle: rgba(0, 19, 25, 0.08);
-  --border-hover: rgba(0, 19, 25, 0.4);
-  --text: #001319;
-  --text-muted: #475B63;
-  --text-subtle: #7A8E96;
+  --bg-card-hover: #F8FAFC;
+  --bg-surface: #E2E8F0;
+  --primary: #18354F;
+  --primary-dark: #FFFFFF;
+  --primary-soft: rgba(24, 53, 79, 0.08);
+  --border: rgba(15, 23, 42, 0.12);
+  --border-subtle: rgba(15, 23, 42, 0.06);
+  --border-hover: rgba(24, 53, 79, 0.35);
+  --text: #0F172A;
+  --text-muted: #475569;
+  --text-subtle: #64748B;
 
-  --shadow-sm: 0 2px 8px rgba(0, 19, 25, 0.06);
-  --shadow-md: 0 6px 18px rgba(0, 19, 25, 0.08);
-  --shadow-lg: 0 12px 30px rgba(0, 19, 25, 0.12);
-  --shadow-glow: 0 0 20px rgba(0, 19, 25, 0.08);
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 6px 20px rgba(15, 23, 42, 0.09);
+  --shadow-lg: 0 12px 36px rgba(15, 23, 42, 0.14);
+  --shadow-glow: 0 0 24px rgba(24, 53, 79, 0.1);
 }
 
 * {
@@ -77,11 +79,12 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  background: radial-gradient(circle at 50% -10%, #062b37 0%, var(--bg-base) 65%);
+  background: radial-gradient(circle at 50% -20%, #0F2A38 0%, #070E17 75%);
+  font-variant-numeric: tabular-nums;
 }
 
 body.light-theme {
-  background: radial-gradient(circle at 50% -10%, #dbe4eb 0%, var(--bg-base) 65%);
+  background: radial-gradient(circle at 50% -20%, #E2E8F0 0%, #F1F5F9 75%);
 }
 
 /* Custom Scrollbar */
@@ -532,15 +535,15 @@ body.light-theme .btn-primary {
   transition: width 0.4s ease;
 }
 
-/* Modals */
+/* Modals - Glassmorphism Fintech Style */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 19, 25, 0.8);
-  backdrop-filter: blur(6px);
+  background: rgba(7, 14, 23, 0.82);
+  backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -554,12 +557,12 @@ body.light-theme .btn-primary {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   width: 100%;
-  max-width: 520px;
-  padding: 24px;
-  box-shadow: var(--shadow-lg);
+  max-width: 540px;
+  padding: 26px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(102, 193, 191, 0.1);
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
   max-height: 90vh;
   overflow-y: auto;
   animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -570,46 +573,50 @@ body.light-theme .btn-primary {
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--border-subtle);
-  padding-bottom: 14px;
+  padding-bottom: 16px;
 }
 
 .modal-title {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 800;
   color: var(--text);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  letter-spacing: -0.01em;
 }
 
 /* Form controls */
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 7px;
 }
 
 .form-label {
   font-size: 0.78rem;
   font-weight: 700;
   color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .form-input, .form-select, .form-textarea {
   background: var(--bg-base);
   border: 1px solid var(--border);
   color: var(--text);
-  padding: 10px 14px;
+  padding: 11px 15px;
   border-radius: var(--radius-sm);
   font-size: 0.88rem;
   font-family: var(--font);
   outline: none;
-  transition: border-color 0.2s ease;
+  transition: all 0.2s ease;
   width: 100%;
 }
 
 .form-input:focus, .form-select:focus, .form-textarea:focus {
-  border-color: var(--text);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(102, 193, 191, 0.2);
 }
 
 .form-row {
