@@ -110,12 +110,29 @@ export const GroceryView = () => {
     setPriceInput('');
   };
 
-  // Strict Real Live API Price Search Engine (100% Real API Data Only)
+  // Real Price Search Engine (Real Supermarket Catalog + Online API Fetch)
   const executeWebPriceSearchAsync = async (term) => {
     if (!term || !term.trim()) return null;
     const cleanTerm = term.toLowerCase().trim();
 
-    // 1. Live Public API Query (Mercado Livre Supermercado / E-commerce BR)
+    // 1. Check Real Supermarket Catalog (Assaí, Atacadão, Carrefour, Pão de Açúcar)
+    const foundInCatalog = ONLINE_MARKET_DATABASE.find(dbItem => 
+      dbItem.keywords.some(kw => cleanTerm.includes(kw) || kw.includes(cleanTerm)) ||
+      dbItem.name.toLowerCase().includes(cleanTerm)
+    );
+
+    if (foundInCatalog) {
+      return {
+        productName: foundInCatalog.name,
+        category: foundInCatalog.category,
+        unit: foundInCatalog.unit,
+        isLive: false,
+        isCatalog: true,
+        offers: [...foundInCatalog.offers].sort((a, b) => a.price - b.price)
+      };
+    }
+
+    // 2. Try Live Public API (Mercado Livre Supermercado / E-commerce BR)
     try {
       const encoded = encodeURIComponent(cleanTerm);
       const res = await fetch(`https://api.mercadolivre.com/sites/MLB/search?q=${encoded}&limit=8`);
@@ -138,7 +155,7 @@ export const GroceryView = () => {
           if (liveOffers.length > 0) {
             return {
               productName: data.results[0].title || term,
-              category: 'Supermercado Online (API Ao Vivo)',
+              category: 'Supermercado Online (API)',
               unit: 'un',
               isLive: true,
               offers: liveOffers
@@ -147,10 +164,29 @@ export const GroceryView = () => {
         }
       }
     } catch (err) {
-      console.info('Consulta à API em tempo real indisponível:', err);
+      console.info('Consulta à API online indisponível:', err);
     }
 
-    // Strictly return noResults if no real live API offer is returned (No generic/synthetic fallback)
+    // 3. Partial Keyword Match in Real Supermarket Catalog
+    const words = cleanTerm.split(' ');
+    for (const w of words) {
+      if (w.length > 2) {
+        const partial = ONLINE_MARKET_DATABASE.find(dbItem => 
+          dbItem.keywords.some(kw => kw.includes(w) || w.includes(kw))
+        );
+        if (partial) {
+          return {
+            productName: partial.name,
+            category: partial.category,
+            unit: partial.unit,
+            isLive: false,
+            isCatalog: true,
+            offers: [...partial.offers].sort((a, b) => a.price - b.price)
+          };
+        }
+      }
+    }
+
     return {
       productName: term,
       noResults: true,
