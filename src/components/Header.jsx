@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useFinance } from '../context/FinanceContext';
-import { PlusCircle, Sun, Moon, Settings, Download, Upload, RefreshCw, Wallet, Users, User, LayoutDashboard, ShoppingCart } from 'lucide-react';
+import { PlusCircle, Sun, Moon, Settings, Download, Upload, RefreshCw, Wallet, Users, User, LayoutDashboard, ShoppingCart, Sparkles } from 'lucide-react';
 
 export const Header = ({ activeTab, onSelectTab, onOpenAddModal, onOpenSettingsModal }) => {
   const { 
@@ -34,20 +34,24 @@ export const Header = ({ activeTab, onSelectTab, onOpenAddModal, onOpenSettingsM
 
   return (
     <header className="g440-header">
+      {/* 1. Left: Brand & Identity */}
       <div className="g440-brand">
         <div className="g440-logo-badge">
-          <Wallet size={24} />
+          <Wallet size={22} />
         </div>
         <div className="g440-title-group">
           <h1>
             Finanças do Casal
-            <span className="badge badge-info" style={{ fontSize: '0.7rem' }}>Grupo 440 Edition</span>
+            <span className="badge badge-info g440-edition-badge">
+              <Sparkles size={11} />
+              Grupo 440
+            </span>
           </h1>
           <p>{settings.person1Name} & {settings.person2Name} • Gestão Financeira Inteligente</p>
         </div>
       </div>
 
-      {/* Main Navigation Tabs: Dashboard vs Lista de Mercado */}
+      {/* 2. Center: Navigation Tabs (Dashboard vs Lista de Mercado) */}
       <div className="main-nav-tabs">
         <button 
           className={`nav-tab-btn ${activeTab === 'dashboard' ? 'active' : ''}`}
@@ -69,68 +73,73 @@ export const Header = ({ activeTab, onSelectTab, onOpenAddModal, onOpenSettingsM
         </button>
       </div>
 
-      {/* Person Filter Pills */}
-      <div className="person-filter-group">
-        <button
-          className={`person-filter-btn ${activePersonFilter === 'both' ? 'active' : ''}`}
-          onClick={() => setActivePersonFilter('both')}
-          title="Ver lançamentos do Casal (Ambos)"
-        >
-          <Users size={15} />
-          Casal
-        </button>
+      {/* 3. Right: Person Filter & Action Controls */}
+      <div className="g440-header-right">
+        {/* Person Filter Pills */}
+        <div className="person-filter-group">
+          <button
+            className={`person-filter-btn ${activePersonFilter === 'both' ? 'active' : ''}`}
+            onClick={() => setActivePersonFilter('both')}
+            title="Ver lançamentos do Casal (Ambos)"
+          >
+            <Users size={14} />
+            Casal
+          </button>
 
-        <button
-          className={`person-filter-btn ${activePersonFilter === 'person1' ? 'active' : ''}`}
-          onClick={() => setActivePersonFilter('person1')}
-          title={`Ver apenas gastos de ${settings.person1Name}`}
-        >
-          <User size={15} />
-          {settings.person1Name}
-        </button>
+          <button
+            className={`person-filter-btn ${activePersonFilter === 'person1' ? 'active' : ''}`}
+            onClick={() => setActivePersonFilter('person1')}
+            title={`Ver apenas gastos de ${settings.person1Name}`}
+          >
+            <User size={14} />
+            {settings.person1Name}
+          </button>
 
-        <button
-          className={`person-filter-btn ${activePersonFilter === 'person2' ? 'active' : ''}`}
-          onClick={() => setActivePersonFilter('person2')}
-          title={`Ver apenas gastos de ${settings.person2Name}`}
-        >
-          <User size={15} />
-          {settings.person2Name}
-        </button>
-      </div>
+          <button
+            className={`person-filter-btn ${activePersonFilter === 'person2' ? 'active' : ''}`}
+            onClick={() => setActivePersonFilter('person2')}
+            title={`Ver apenas gastos de ${settings.person2Name}`}
+          >
+            <User size={14} />
+            {settings.person2Name}
+          </button>
+        </div>
 
-      <div className="g440-actions-row">
-        <button className="btn btn-primary" onClick={onOpenAddModal}>
-          <PlusCircle size={16} />
-          Novo Lançamento
-        </button>
+        <div className="g440-actions-row">
+          <button className="btn btn-primary btn-new-entry" onClick={onOpenAddModal}>
+            <PlusCircle size={16} />
+            <span>Novo Lançamento</span>
+          </button>
 
-        <button className="btn btn-secondary btn-icon" onClick={toggleTheme} title="Alternar Tema Claro / Escuro">
-          {settings.darkMode ? <Sun size={18} /> : <Moon size={18} />}
-        </button>
+          <div className="utility-btn-group">
+            <button className="btn btn-secondary btn-icon" onClick={toggleTheme} title="Alternar Tema Claro / Escuro">
+              {settings.darkMode ? <Sun size={17} /> : <Moon size={17} />}
+            </button>
 
-        <button className="btn btn-secondary btn-icon" onClick={onOpenSettingsModal} title="Configurações do Casal & Categorias">
-          <Settings size={18} />
-        </button>
+            <button className="btn btn-secondary btn-icon" onClick={onOpenSettingsModal} title="Configurações do Casal & Categorias">
+              <Settings size={17} />
+            </button>
 
-        <button className="btn btn-ghost btn-icon" onClick={exportBackupJSON} title="Baixar Backup dos Dados (JSON)">
-          <Download size={18} />
-        </button>
+            <button className="btn btn-ghost btn-icon" onClick={exportBackupJSON} title="Baixar Backup dos Dados (JSON)">
+              <Download size={17} />
+            </button>
 
-        <button className="btn btn-ghost btn-icon" onClick={() => fileInputRef.current?.click()} title="Importar Backup (JSON)">
-          <Upload size={18} />
-        </button>
-        <input 
-          type="file" 
-          ref={fileInputRef} 
-          onChange={handleFileUpload} 
-          accept=".json" 
-          style={{ display: 'none' }} 
-        />
+            <button className="btn btn-ghost btn-icon" onClick={() => fileInputRef.current?.click()} title="Importar Backup (JSON)">
+              <Upload size={17} />
+            </button>
+            <input 
+              type="file" 
+              ref={fileInputRef} 
+              onChange={handleFileUpload} 
+              accept=".json" 
+              style={{ display: 'none' }} 
+            />
 
-        <button className="btn btn-ghost btn-icon" onClick={resetAllData} title="Restaurar Dados Iniciais">
-          <RefreshCw size={18} />
-        </button>
+            <button className="btn btn-ghost btn-icon" onClick={resetAllData} title="Restaurar Dados Iniciais">
+              <RefreshCw size={17} />
+            </button>
+          </div>
+        </div>
       </div>
     </header>
   );
